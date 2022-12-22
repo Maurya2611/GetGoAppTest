@@ -61,6 +61,7 @@ class CharacterViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_filter"),
                                                                  style: .plain, target: self,
                                                                  action: #selector(filterButtonPressed(_:)))
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
         
         // service API Call
         if NetworkReachability.isInterNetExist() {
@@ -94,16 +95,24 @@ class CharacterViewController: UIViewController {
         }
     }
     @objc func filterButtonPressed(_ sender: Any) {
-        let viewController = FilterViewController.init(viewModel: viewModel)
-        viewController.modalPresentationStyle = .custom
-        viewController.transitioningDelegate = sheetTransitioningDelegate
-        self.present(viewController, animated: true)
-        print(viewModel?.applyFilter(status: "Alive", species: "Human", gender: "Male") ?? [])
+        if let viewModel = self.viewModel, viewModel.characterResult.count > 0 {
+            let viewController = FilterViewController.init(viewModel: viewModel)
+            viewController.modalPresentationStyle = .custom
+            viewController.transitioningDelegate = sheetTransitioningDelegate
+            self.present(viewController, animated: true)
+        }
     }
     func showDetailCharacterViewController() {
         if let viewModel = self.viewModel, viewModel.selectedResult != nil   {
             let viewController = CharacterDetailViewController.init(viewModel: viewModel)
             self.navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    func checkFilterButtonEnable() {
+        if let viewModel = self.viewModel, viewModel.characterResult.count > 0 {
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+        } else {
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
         }
     }
 }
@@ -201,6 +210,7 @@ extension CharacterViewController: UICollectionViewDelegate, UICollectionViewDel
 extension CharacterViewController: CharacterViewModelProtocol {
     func didFetchCharacterList() {
         CommonUtils.hideOffLoader()
+        checkFilterButtonEnable()
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }

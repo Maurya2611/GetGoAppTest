@@ -11,6 +11,7 @@ protocol CharacterViewModelProtocol: AnyObject {
     func didFetchCharacterList()
     func failToFetchCharacterList(_ error: String?)
     func noMoreDataToFetch()
+    func filteredCharacterResult(_ dataResponse: [CharacterResult]?)
 }
 public class CharacterViewModel {
     private weak var delegate: CharacterViewModelProtocol?
