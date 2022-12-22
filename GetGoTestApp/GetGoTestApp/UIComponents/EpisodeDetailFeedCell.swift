@@ -21,7 +21,6 @@ class EpisodeDetailFeedCell: UICollectionViewCell {
     }
     override func awakeFromNib() {
         super.awakeFromNib()
-       
     }
     func bind(_ item: EpisodesDataResult?) {
         itemTittleLabel.text = item?.name ?? ""

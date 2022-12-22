@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 // MARK: - UIViewController
 class CharacterViewController: UIViewController {
+    private let sheetTransitioningDelegate = SheetTransitioningDelegate()
     var viewModel: CharacterViewModel?
     private let padding: CGFloat = 16
     private let sectionInset: UIEdgeInsets = UIEdgeInsets(top: 16,
@@ -94,9 +95,9 @@ class CharacterViewController: UIViewController {
     }
     @objc func filterButtonPressed(_ sender: Any) {
         let viewController = FilterViewController.init(viewModel: viewModel)
-        viewController.modalPresentationStyle = .overCurrentContext
-        viewController.modalTransitionStyle = .crossDissolve
-        self.navigationController?.present(viewController, animated: true)
+        viewController.modalPresentationStyle = .custom
+        viewController.transitioningDelegate = sheetTransitioningDelegate
+        self.present(viewController, animated: true)
         print(viewModel?.applyFilter(status: "Alive", species: "Human", gender: "Male") ?? [])
     }
     func showDetailCharacterViewController() {

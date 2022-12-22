@@ -13,6 +13,11 @@
 		E04519D92952D25700F9AB09 /* CharacterViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04519D82952D25700F9AB09 /* CharacterViewControllerUITests.swift */; };
 		E04519DB2952DA2A00F9AB09 /* LocationViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04519DA2952DA2A00F9AB09 /* LocationViewControllerUITests.swift */; };
 		E04519DD2952F8AE00F9AB09 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04519DC2952F8AE00F9AB09 /* FilterViewController.swift */; };
+		E06AF75529546636001895C9 /* CollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06AF75129546636001895C9 /* CollectionHeaderView.swift */; };
+		E06AF75729546636001895C9 /* ContainerBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06AF75329546636001895C9 /* ContainerBottomSheetView.swift */; };
+		E06AF75D29546D32001895C9 /* SheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06AF75A29546D32001895C9 /* SheetTransition.swift */; };
+		E06AF75E29546D32001895C9 /* SheetTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06AF75B29546D32001895C9 /* SheetTransitioningDelegate.swift */; };
+		E06AF75F29546D32001895C9 /* SheetPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06AF75C29546D32001895C9 /* SheetPresentationController.swift */; };
 		E0774CD3295013CD00149BDB /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0774CD2295013CD00149BDB /* CharacterDetailViewController.swift */; };
 		E0AC70B8294B163A0083C97F /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AC70B4294B163A0083C97F /* LocationViewController.swift */; };
 		E0AC70B9294B163A0083C97F /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AC70B5294B163A0083C97F /* MainTabBarController.swift */; };
@@ -45,8 +50,6 @@
 		E0EA2D002954404000056B75 /* LocationFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EA2CC92954404000056B75 /* LocationFeedCell.swift */; };
 		E0EA2D012954404000056B75 /* LocationFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0EA2CCA2954404000056B75 /* LocationFeedCell.xib */; };
 		E0EA2D022954404000056B75 /* CommonLinkFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EA2CCB2954404000056B75 /* CommonLinkFeedCell.swift */; };
-		E0EA2D032954404000056B75 /* CDBottomSheetHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0EA2CCD2954404000056B75 /* CDBottomSheetHeader.xib */; };
-		E0EA2D042954404000056B75 /* CDBottomSheetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EA2CCE2954404000056B75 /* CDBottomSheetHeader.swift */; };
 		E0EA2D052954404000056B75 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EA2CD02954404000056B75 /* CharacterViewModel.swift */; };
 		E0EA2D062954404000056B75 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EA2CD12954404000056B75 /* LocationViewModel.swift */; };
 		E0EA2D072954404000056B75 /* EpisodesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EA2CD22954404000056B75 /* EpisodesViewModel.swift */; };
@@ -106,6 +109,11 @@
 		E04519D82952D25700F9AB09 /* CharacterViewControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewControllerUITests.swift; sourceTree = "<group>"; };
 		E04519DA2952DA2A00F9AB09 /* LocationViewControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewControllerUITests.swift; sourceTree = "<group>"; };
 		E04519DC2952F8AE00F9AB09 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		E06AF75129546636001895C9 /* CollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionHeaderView.swift; sourceTree = "<group>"; };
+		E06AF75329546636001895C9 /* ContainerBottomSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerBottomSheetView.swift; sourceTree = "<group>"; };
+		E06AF75A29546D32001895C9 /* SheetTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetTransition.swift; sourceTree = "<group>"; };
+		E06AF75B29546D32001895C9 /* SheetTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetTransitioningDelegate.swift; sourceTree = "<group>"; };
+		E06AF75C29546D32001895C9 /* SheetPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetPresentationController.swift; sourceTree = "<group>"; };
 		E0774CD2295013CD00149BDB /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
 		E0AC70B4294B163A0083C97F /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		E0AC70B5294B163A0083C97F /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -142,8 +150,6 @@
 		E0EA2CC92954404000056B75 /* LocationFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationFeedCell.swift; sourceTree = "<group>"; };
 		E0EA2CCA2954404000056B75 /* LocationFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationFeedCell.xib; sourceTree = "<group>"; };
 		E0EA2CCB2954404000056B75 /* CommonLinkFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonLinkFeedCell.swift; sourceTree = "<group>"; };
-		E0EA2CCD2954404000056B75 /* CDBottomSheetHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CDBottomSheetHeader.xib; sourceTree = "<group>"; };
-		E0EA2CCE2954404000056B75 /* CDBottomSheetHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDBottomSheetHeader.swift; sourceTree = "<group>"; };
 		E0EA2CD02954404000056B75 /* CharacterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
 		E0EA2CD12954404000056B75 /* LocationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		E0EA2CD22954404000056B75 /* EpisodesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodesViewModel.swift; sourceTree = "<group>"; };
@@ -331,8 +337,11 @@
 		E0EA2CCC2954404000056B75 /* BottomSheetUI */ = {
 			isa = PBXGroup;
 			children = (
-				E0EA2CCD2954404000056B75 /* CDBottomSheetHeader.xib */,
-				E0EA2CCE2954404000056B75 /* CDBottomSheetHeader.swift */,
+				E06AF75C29546D32001895C9 /* SheetPresentationController.swift */,
+				E06AF75A29546D32001895C9 /* SheetTransition.swift */,
+				E06AF75B29546D32001895C9 /* SheetTransitioningDelegate.swift */,
+				E06AF75129546636001895C9 /* CollectionHeaderView.swift */,
+				E06AF75329546636001895C9 /* ContainerBottomSheetView.swift */,
 			);
 			path = BottomSheetUI;
 			sourceTree = "<group>";
@@ -534,7 +543,6 @@
 				E0EA2CF42954404000056B75 /* CharacterDetailFeedCell.xib in Resources */,
 				E0EA2D1D2954404000056B75 /* SF-Pro-Rounded-Light.ttf in Resources */,
 				E0EA2D172954404000056B75 /* SF-Pro-Rounded-Regular.ttf in Resources */,
-				E0EA2D032954404000056B75 /* CDBottomSheetHeader.xib in Resources */,
 				E0EA2D152954404000056B75 /* SF-Pro-Rounded-Black.ttf in Resources */,
 				E0EA2CF82954404000056B75 /* LocationDetailFeedCell.xib in Resources */,
 				E0E7C0B9294AFD9800F7258D /* LaunchScreen.storyboard in Resources */,
@@ -684,6 +692,7 @@
 				E0EA2D092954404000056B75 /* LocationDataModel.swift in Sources */,
 				E0AC70BB294B163A0083C97F /* CharacterViewController.swift in Sources */,
 				E0EA2D132954404000056B75 /* NetworkReachability.swift in Sources */,
+				E06AF75E29546D32001895C9 /* SheetTransitioningDelegate.swift in Sources */,
 				E0EA2D1F2954404000056B75 /* UIView+Extensions.swift in Sources */,
 				E0EA2CF32954404000056B75 /* EpisodesFeedCell.swift in Sources */,
 				E0EA2D062954404000056B75 /* LocationViewModel.swift in Sources */,
@@ -691,9 +700,11 @@
 				E0EA2D122954404000056B75 /* HTTPMethod.swift in Sources */,
 				E0EA2CFD2954404000056B75 /* CharacterFeedCell.swift in Sources */,
 				E0EA2CFC2954404000056B75 /* EpisodeDetailFeedCell.swift in Sources */,
+				E06AF75D29546D32001895C9 /* SheetTransition.swift in Sources */,
 				E0EA2CF92954404000056B75 /* CharacterDetailFeedCell.swift in Sources */,
 				E0EA2CF22954404000056B75 /* MaterialLoader.swift in Sources */,
 				E0EA2D0E2954404000056B75 /* ServerRouterType.swift in Sources */,
+				E06AF75729546636001895C9 /* ContainerBottomSheetView.swift in Sources */,
 				E0B5F8D82951A743007098C5 /* LocationDetailViewController.swift in Sources */,
 				E04519DD2952F8AE00F9AB09 /* FilterViewController.swift in Sources */,
 				E0EA2CFA2954404000056B75 /* LocationDetailFeedCell.swift in Sources */,
@@ -705,12 +716,13 @@
 				E0774CD3295013CD00149BDB /* CharacterDetailViewController.swift in Sources */,
 				E0B5F8DE2951C066007098C5 /* EpisodeDetailViewController.swift in Sources */,
 				E0EA2D0D2954404000056B75 /* HTTPTask.swift in Sources */,
+				E06AF75529546636001895C9 /* CollectionHeaderView.swift in Sources */,
 				E0EA2D112954404000056B75 /* ParameterEncoding.swift in Sources */,
 				E0AC70B9294B163A0083C97F /* MainTabBarController.swift in Sources */,
 				E0EA2D0C2954404000056B75 /* BaseURLServerRouterType.swift in Sources */,
-				E0EA2D042954404000056B75 /* CDBottomSheetHeader.swift in Sources */,
 				E0EA2D0B2954404000056B75 /* CommonUtils.swift in Sources */,
 				E0E7C0AF294AFD9600F7258D /* SceneDelegate.swift in Sources */,
+				E06AF75F29546D32001895C9 /* SheetPresentationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
