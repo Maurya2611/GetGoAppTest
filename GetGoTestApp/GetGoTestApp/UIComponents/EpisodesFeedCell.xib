@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Rounded-Regular.ttf">
+            <string>SFProRounded-Regular</string>
+        </array>
+        <array key="SF-Pro-Rounded-Semibold.ttf">
+            <string>SFProRounded-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Y6u-Dn-pLy" customClass="EpisodesFeedCell" customModule="GetGoTestApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="E0Z-YD-FtI">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QwK-FR-FkT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.84999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="FAq-5g-xkw">
+                                <rect key="frame" x="16" y="14" width="382" height="26.5"/>
+                                <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="22"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ZB5-fz-Xqn">
+                                <rect key="frame" x="0.0" y="45" width="414" height="75"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PY8-IP-XgY">
+                                        <rect key="frame" x="0.0" y="0.0" width="204.5" height="75"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Q1y-KY-4D7">
+                                                <rect key="frame" x="16" y="10" width="41.5" height="35"/>
+                                                <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="18"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewl-Fc-UHD">
+                                                <rect key="frame" x="16" y="45" width="41.5" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="fzZ-OY-GKD"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="18"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="Q1y-KY-4D7" firstAttribute="leading" secondItem="PY8-IP-XgY" secondAttribute="leading" constant="16" id="00b-7L-Zop"/>
+                                            <constraint firstItem="Q1y-KY-4D7" firstAttribute="top" secondItem="PY8-IP-XgY" secondAttribute="top" constant="10" id="dmA-hO-q0p"/>
+                                            <constraint firstAttribute="bottom" secondItem="ewl-Fc-UHD" secondAttribute="bottom" constant="10" id="m2O-x8-cOK"/>
+                                            <constraint firstItem="ewl-Fc-UHD" firstAttribute="top" secondItem="Q1y-KY-4D7" secondAttribute="bottom" id="qvS-ji-n0A"/>
+                                            <constraint firstItem="ewl-Fc-UHD" firstAttribute="leading" secondItem="PY8-IP-XgY" secondAttribute="leading" constant="16" id="xFt-gA-eqO"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWc-ck-Dih">
+                                        <rect key="frame" x="209.5" y="0.0" width="204.5" height="75"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7W-7U-myK">
+                                                <rect key="frame" x="5" y="15" width="194.5" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="UAe-Al-qYg"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="18"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="y7W-7U-myK" secondAttribute="trailing" constant="5" id="6dV-mJ-7vL"/>
+                                            <constraint firstAttribute="bottom" secondItem="y7W-7U-myK" secondAttribute="bottom" constant="10" id="fuQ-Z4-Qvi"/>
+                                            <constraint firstItem="y7W-7U-myK" firstAttribute="leading" secondItem="iWc-ck-Dih" secondAttribute="leading" constant="5" id="gIl-Lg-KDS"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="iWc-ck-Dih" firstAttribute="width" secondItem="PY8-IP-XgY" secondAttribute="width" id="GNL-ds-prk"/>
+                                    <constraint firstItem="iWc-ck-Dih" firstAttribute="leading" secondItem="PY8-IP-XgY" secondAttribute="trailing" constant="5" id="T7Q-Md-Rbu"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="75" id="bJa-M9-LYq"/>
+                                    <constraint firstItem="iWc-ck-Dih" firstAttribute="height" secondItem="PY8-IP-XgY" secondAttribute="height" id="vRg-Go-Cik"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="FAq-5g-xkw" secondAttribute="trailing" constant="16" id="Npy-AG-yvA"/>
+                            <constraint firstItem="FAq-5g-xkw" firstAttribute="top" secondItem="QwK-FR-FkT" secondAttribute="top" constant="14" id="Wnb-lx-k1Z"/>
+                            <constraint firstAttribute="trailing" secondItem="ZB5-fz-Xqn" secondAttribute="trailing" id="eIf-Ij-GLb"/>
+                            <constraint firstAttribute="bottom" secondItem="ZB5-fz-Xqn" secondAttribute="bottom" id="ee4-dU-Msd"/>
+                            <constraint firstItem="ZB5-fz-Xqn" firstAttribute="leading" secondItem="QwK-FR-FkT" secondAttribute="leading" id="kgp-9z-fbL"/>
+                            <constraint firstItem="FAq-5g-xkw" firstAttribute="leading" secondItem="QwK-FR-FkT" secondAttribute="leading" constant="16" id="qLP-Sf-Vm4"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="QwK-FR-FkT" secondAttribute="trailing" id="jek-Iv-LCQ"/>
+                    <constraint firstItem="QwK-FR-FkT" firstAttribute="top" secondItem="E0Z-YD-FtI" secondAttribute="top" id="nT4-Sb-3cF"/>
+                    <constraint firstItem="QwK-FR-FkT" firstAttribute="leading" secondItem="E0Z-YD-FtI" secondAttribute="leading" id="prk-FG-dfN"/>
+                    <constraint firstAttribute="bottom" secondItem="QwK-FR-FkT" secondAttribute="bottom" id="rfk-wT-n1e"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <connections>
+                <outlet property="itemDescriptionLabel" destination="y7W-7U-myK" id="pJv-n9-UAW"/>
+                <outlet property="itemEpisodeLabel" destination="ewl-Fc-UHD" id="f1a-D8-b7s"/>
+                <outlet property="itemSeasonLabel" destination="Q1y-KY-4D7" id="6TI-N7-iDV"/>
+                <outlet property="itemTitleLabel" destination="FAq-5g-xkw" id="shF-mp-ynJ"/>
+                <outlet property="itemViewBG" destination="QwK-FR-FkT" id="bbM-lC-R4Q"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="87.723214285714278"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

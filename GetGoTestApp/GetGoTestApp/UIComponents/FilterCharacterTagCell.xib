@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Rounded-Semibold.ttf">
+            <string>SFProRounded-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="hyl-fl-SIY" customClass="FilterCharacterTagCell" customModule="GetGoTestApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="166" height="48"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="iyp-3p-9im">
+                <rect key="frame" x="0.0" y="0.0" width="166" height="48"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEO-hv-RSa">
+                        <rect key="frame" x="0.0" y="0.0" width="166" height="48"/>
+                        <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="14"/>
+                        <color key="textColor" systemColor="tintColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="rEO-hv-RSa" secondAttribute="bottom" id="U1x-Lp-J4Y"/>
+                    <constraint firstAttribute="trailing" secondItem="rEO-hv-RSa" secondAttribute="trailing" id="gIz-uZ-3kg"/>
+                    <constraint firstItem="rEO-hv-RSa" firstAttribute="top" secondItem="iyp-3p-9im" secondAttribute="top" id="zkm-z6-X4p"/>
+                    <constraint firstItem="rEO-hv-RSa" firstAttribute="leading" secondItem="iyp-3p-9im" secondAttribute="leading" id="zoc-cd-VKn"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="166" height="48"/>
+            <connections>
+                <outlet property="titleLabel" destination="rEO-hv-RSa" id="F0S-le-jbo"/>
+            </connections>
+            <point key="canvasLocation" x="221.73913043478262" y="87.053571428571431"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
