@@ -28,7 +28,6 @@ final class ContainerBottomSheetView: UIView {
             configuration.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
             button.configuration = configuration
             button.addTarget(self, action: #selector(applyButtonPressed(_:)), for: .touchUpInside)
-
         } else {
             button.backgroundColor = .systemOrange
             button.setTitle("Dismiss", for: .normal)
@@ -40,7 +39,7 @@ final class ContainerBottomSheetView: UIView {
         return button
     }()
     
-    private(set) var selectedValue: [String: String] = [:]
+    var selectedValue: [String: String] = [:]
     // MARK: - UI Elements
     private let padding: CGFloat = 8
     private let sectionInset: UIEdgeInsets = UIEdgeInsets(top: 0,
@@ -86,6 +85,7 @@ final class ContainerBottomSheetView: UIView {
         addSubview(button)
         addSubview(titleLabel)
         self.addSubview(collectionView)
+        checkButtonEnableDisable()
     }
     @objc func applyButtonPressed(_ sender: Any) {
         self.didTapButton?(self.selectedValue)
@@ -121,6 +121,13 @@ final class ContainerBottomSheetView: UIView {
                                  attributes: font,
                                  context: nil)
     }
+    func checkButtonEnableDisable() {
+        if selectedValue.count > 0 {
+            button.isEnabled = true
+        }else {
+            button.isEnabled = false
+        }
+    }
 }
 
 // MARK: - UICollectioViewDataSource methods
@@ -140,8 +147,14 @@ extension ContainerBottomSheetView: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         if let itemsObject = listItems?[indexPath.section] as? [String: Any],
-           let items = itemsObject["list"] as? Array<Any>, let cellValue = items[indexPath.row] as? String {
+           let items = itemsObject["list"] as? Array<Any>,
+           let cellValue = items[indexPath.row] as? String, let keyValue = itemsObject["title"] as? String {
             cell.bind(cellValue)
+            if cellValue ==  selectedValue[keyValue]{
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
+            } else {
+                collectionView.deselectItem(at: indexPath, animated: false)
+            }
         }
         return cell
     }
@@ -170,7 +183,8 @@ extension ContainerBottomSheetView: UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if let itemsObject = listItems?[indexPath.section] as? [String: Any], let keyValue = itemsObject["title"] as? String {
-            selectedValue.updateValue("", forKey: keyValue)
+            selectedValue.removeValue(forKey: keyValue)
+            checkButtonEnableDisable()
         }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -178,6 +192,7 @@ extension ContainerBottomSheetView: UICollectionViewDataSource {
            let items = itemsObject["list"] as? Array<Any>, let strValue = items[indexPath.row] as? String,
             let keyValue = itemsObject["title"] as? String {
             selectedValue[keyValue] = strValue
+            checkButtonEnableDisable()
         }
     }
 }

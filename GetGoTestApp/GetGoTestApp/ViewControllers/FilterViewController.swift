@@ -58,8 +58,10 @@ class FilterViewController: UIViewController {
         let Params_Gender: [String: Any] = ["title": "Gender", "list": Gender_List]
         
         rootView?.listItems = [Params_Status, Params_Species, Params_Gender]
+        rootView?.selectedValue = viewModel?.selectedValue ?? [:]
         rootView?.didTapButton = { dic in
             self.dismiss(animated: true)
+            self.viewModel?.selectedValue = dic
             self.delegate?.didFetchFilterDataList(dic["Status"], dic["Species"], dic["Gender"])
         }
     }

@@ -17,6 +17,7 @@ public class CharacterViewModel {
     var characterResult: [CharacterResult] = [CharacterResult]()
     var filteredResult: [CharacterResult] = []
     var selectedResult: CharacterResult?
+    var selectedValue: [String: String] = [:]
     private let networkManager: NetworkManager = NetworkManager()
     var page: Int = 1
     var totalPages: Int = 1
