@@ -97,6 +97,7 @@ class CharacterViewController: UIViewController {
     @objc func filterButtonPressed(_ sender: Any) {
         if let viewModel = self.viewModel, viewModel.characterResult.count > 0 {
             let viewController = FilterViewController.init(viewModel: viewModel)
+            viewController.delegate = self
             viewController.modalPresentationStyle = .custom
             viewController.transitioningDelegate = sheetTransitioningDelegate
             self.present(viewController, animated: true)
@@ -116,7 +117,14 @@ class CharacterViewController: UIViewController {
         }
     }
 }
-
+extension CharacterViewController: FilterViewControllerProtocol {
+    func didFetchFilterDataList(_ status: String?, _ spices: String?, _ gender: String?) {
+        let filterArray = viewModel?.applyFilter(status: status ?? "", species: spices ?? "", gender: gender ?? "")
+        viewModel?.characterResult = filterArray ?? []
+        print(filterArray ?? "")
+        collectionView.reloadData()
+    }
+}
 // MARK: - UISearchBarDelegate, UISearchResultsUpdating
 extension CharacterViewController: UISearchBarDelegate, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
@@ -187,17 +195,17 @@ extension CharacterViewController: UICollectionViewDelegate, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView,
                         willDisplay cell: UICollectionViewCell,
                         forItemAt indexPath: IndexPath) {
-        if let count = viewModel?.characterResult.count, indexPath.row == count - 1 {
-            // this is the last cell, load more data
-            if NetworkReachability.isInterNetExist() {
-                CommonUtils.showOnLoader(in: self.view)
-                viewModel?.loadMoreData()
-            } else {
-                CommonUtils.hideOffLoader()
-                CommonUtils.showAlert(in: self, withTitle: "No Internet connection!",
-                                      withBodyMessage: "Turn on mobile data or use Wi-Fi to access data.")
-            }
-        }
+//        if let count = viewModel?.characterResult.count, indexPath.row == count - 1 {
+//            // this is the last cell, load more data
+//            if NetworkReachability.isInterNetExist() {
+//                CommonUtils.showOnLoader(in: self.view)
+//                viewModel?.loadMoreData()
+//            } else {
+//                CommonUtils.hideOffLoader()
+//                CommonUtils.showAlert(in: self, withTitle: "No Internet connection!",
+//                                      withBodyMessage: "Turn on mobile data or use Wi-Fi to access data.")
+//            }
+//        }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let item = viewModel?.characterResult[indexPath.row] {

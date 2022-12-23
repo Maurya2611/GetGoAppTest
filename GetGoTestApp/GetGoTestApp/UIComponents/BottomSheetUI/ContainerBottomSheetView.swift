@@ -18,25 +18,29 @@ final class ContainerBottomSheetView: UIView {
     private lazy var button: UIButton = {
         let button = UIButton()
         if #available(iOS 15, *) {
-          var configuration = UIButton.Configuration.borderedProminent()
-          configuration.title = "Apply"
-          configuration.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
-          configuration.baseBackgroundColor = .tintColor
-          configuration.cornerStyle = .medium
-          button.configuration = configuration
+            var configuration = UIButton.Configuration.borderedProminent()
+            configuration.baseBackgroundColor = .tintColor
+            configuration.buttonSize = .medium
+            configuration.cornerStyle = .medium
+            configuration.attributedTitle = AttributedString("Apply",
+                                attributes: AttributeContainer([NSAttributedString.Key.font:
+                                    UIFont(name:"SFProRounded-Semibold", size: 20) ?? UIFont.boldSystemFont(ofSize: 20)]))
+            configuration.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
+            button.configuration = configuration
+            button.addTarget(self, action: #selector(applyButtonPressed(_:)), for: .touchUpInside)
+
         } else {
-          button.backgroundColor = .systemOrange
-          button.setTitle("Dismiss", for: .normal)
-          button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
-          button.setTitleColor(.white, for: .normal)
-          button.titleEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
-          button.layer.cornerRadius = 8
+            button.backgroundColor = .systemOrange
+            button.setTitle("Dismiss", for: .normal)
+            button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
+            button.setTitleColor(.white, for: .normal)
+            button.titleEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+            button.layer.cornerRadius = 8
         }
         return button
     }()
     
-    private(set) var selectedIndex: IndexPath = IndexPath(row: 0, section: 0)
-
+    private(set) var selectedValue: [String: String] = [:]
     // MARK: - UI Elements
     private let padding: CGFloat = 8
     private let sectionInset: UIEdgeInsets = UIEdgeInsets(top: 0,
@@ -50,19 +54,19 @@ final class ContainerBottomSheetView: UIView {
                                     collectionViewLayout: layout)
         view.register(FilterCharacterTagCell.nib, forCellWithReuseIdentifier: FilterCharacterTagCell.reuseIdentifier)
         view.register(CollectionHeaderView.self,
-                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                withReuseIdentifier: CollectionHeaderView.reuseIdentifier)
+                      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                      withReuseIdentifier: CollectionHeaderView.reuseIdentifier)
         view.backgroundColor = .clear
         view.dataSource = self
         view.delegate = self
         view.allowsMultipleSelection = true
         return view
     }()
-
+    
     // MARK: - Interactions
-    var didTapButton: (() -> Void)?
+    var didTapButton: (([String: String]) -> Void)?
     var listItems: Array<Any>?
-
+    
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -81,14 +85,10 @@ final class ContainerBottomSheetView: UIView {
         self.backgroundColor = .white
         addSubview(button)
         addSubview(titleLabel)
-        
         self.addSubview(collectionView)
-        
-        let action = UIAction { [weak self] _ in
-            self?.didTapButton?()
-        }
-        button.addAction(action, for: .touchUpInside)
-       
+    }
+    @objc func applyButtonPressed(_ sender: Any) {
+        self.didTapButton?(self.selectedValue)
     }
     private func layout() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -114,7 +114,7 @@ final class ContainerBottomSheetView: UIView {
     }
     private func estimatedFrame(text: String) -> CGRect {
         let font = [NSAttributedString.Key.font: UIFont(name:"SFProRounded-Semibold", size: 14)
-                     ?? UIFont.boldSystemFont(ofSize: 14)]
+                    ?? UIFont.boldSystemFont(ofSize: 14)]
         let size = CGSize(width: .greatestFiniteMagnitude, height: FilterCharacterTagCell.cellHeight)
         return text.boundingRect(with: size,
                                  options: .usesFontLeading,
@@ -126,7 +126,7 @@ final class ContainerBottomSheetView: UIView {
 // MARK: - UICollectioViewDataSource methods
 extension ContainerBottomSheetView: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-       return listItems?.count ?? 0
+        return listItems?.count ?? 0
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let itemsObject: [String: Any] = listItems?[section] as? [String: Any] ?? [:]
@@ -140,7 +140,7 @@ extension ContainerBottomSheetView: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         if let itemsObject = listItems?[indexPath.section] as? [String: Any],
-            let items = itemsObject["list"] as? Array<Any>, let cellValue = items[indexPath.row] as? String {
+           let items = itemsObject["list"] as? Array<Any>, let cellValue = items[indexPath.row] as? String {
             cell.bind(cellValue)
         }
         return cell
@@ -150,8 +150,8 @@ extension ContainerBottomSheetView: UICollectionViewDataSource {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                            withReuseIdentifier: CollectionHeaderView.reuseIdentifier,
-                                            for: indexPath) as? CollectionHeaderView else {
+                                                                                   withReuseIdentifier: CollectionHeaderView.reuseIdentifier,
+                                                                                   for: indexPath) as? CollectionHeaderView else {
                 return UICollectionReusableView()
             }
             if let itemsObject = listItems?[indexPath.section] as? [String: Any],
@@ -168,10 +168,16 @@ extension ContainerBottomSheetView: UICollectionViewDataSource {
         })
         return true
     }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if let itemsObject = listItems?[indexPath.section] as? [String: Any], let keyValue = itemsObject["title"] as? String {
+            selectedValue.updateValue("", forKey: keyValue)
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let itemsObject = listItems?[indexPath.section] as? [String: Any],
-            let items = itemsObject["list"] as? Array<Any>, let strValue = items[indexPath.row] as? String {
-            print(itemsObject, items, strValue)
+           let items = itemsObject["list"] as? Array<Any>, let strValue = items[indexPath.row] as? String,
+            let keyValue = itemsObject["title"] as? String {
+            selectedValue[keyValue] = strValue
         }
     }
 }

@@ -11,7 +11,6 @@ protocol CharacterViewModelProtocol: AnyObject {
     func didFetchCharacterList()
     func failToFetchCharacterList(_ error: String?)
     func noMoreDataToFetch()
-    func filteredCharacterResult(_ dataResponse: [CharacterResult]?)
 }
 public class CharacterViewModel {
     private weak var delegate: CharacterViewModelProtocol?
@@ -53,7 +52,16 @@ extension CharacterViewModel {
         }
     }
     func applyFilter(status: String, species: String, gender: String) -> [CharacterResult] {
-        let filteredArray = self.characterResult.filter { $0.status == status && $0.species == species && $0.gender == gender}
+        var filteredArray = self.characterResult.filter { $0.status == status || $0.species == species || $0.gender == gender}
+        if !status.isEmpty {
+            filteredArray = filteredArray.filter { $0.status == status}
+        }
+        if !species.isEmpty {
+            filteredArray = filteredArray.filter { $0.species == species}
+        }
+        if !gender.isEmpty {
+            filteredArray = filteredArray.filter { $0.gender == gender}
+        }
         return filteredArray
     }
 }

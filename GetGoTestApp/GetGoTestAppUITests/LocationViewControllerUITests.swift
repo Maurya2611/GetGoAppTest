@@ -26,8 +26,7 @@ class LocationViewControllerUITests: XCTestCase {
         app.launch()
         var device = XCUIDevice.shared.orientation
         device = .portrait // device under test is set to portrait
-        XCTAssertTrue(device.isPortrait) // tests if device is in portrait
-                
+        XCTAssertTrue(device.isPortrait) // tests if device is in portrait                
         
     }
     func testLaunchPerformance() throws {

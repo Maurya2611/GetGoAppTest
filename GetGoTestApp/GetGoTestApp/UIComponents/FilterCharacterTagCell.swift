@@ -24,7 +24,7 @@ class FilterCharacterTagCell: UICollectionViewCell {
         //Cell Corner Radius
         titleLabel.layer.borderColor = UIColor.lightGray.cgColor
         titleLabel.textColor = UIColor(red: 0.746, green: 0.746, blue: 0.746, alpha: 1)
-        titleLabel.layer.borderWidth = 1
+        titleLabel.layer.borderWidth = 2
         titleLabel.layer.cornerRadius = 8
     }
     override var isSelected: Bool {

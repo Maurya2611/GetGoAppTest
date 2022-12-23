@@ -111,5 +111,16 @@ struct CommonUtils {
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
+    static func uniqueElementsFrom<T: Hashable>(array: [T]) -> [T] {
+        var set = Set<T>()
+        let result = array.filter {
+            guard !set.contains($0) else {
+                return false
+            }
+            set.insert($0)
+            return true
+        }
+        return result
+    }
 }
 
