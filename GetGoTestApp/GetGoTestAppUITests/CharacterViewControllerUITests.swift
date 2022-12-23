@@ -44,6 +44,24 @@ class CharacterViewControllerUITests: XCTestCase {
         app.navigationBars["Rick Sanchez"].buttons["Character"].tap()
         
     }
+    func testFilterButton() throws {
+        let app = XCUIApplication()
+        app.launch()
+        var device = XCUIDevice.shared.orientation
+        device = .portrait // device under test is set to portrait
+        XCTAssertTrue(device.isPortrait) // tests if device is in portrait
+        
+        app.navigationBars["Character"].buttons["icon filter"].tap()
+        let collectionViewsQuery2 = app.collectionViews
+        let collectionViewsQuery = collectionViewsQuery2
+        collectionViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["Alive"]/*[[".cells.staticTexts[\"Alive\"]",".staticTexts[\"Alive\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        collectionViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["Alien"]/*[[".cells.staticTexts[\"Alien\"]",".staticTexts[\"Alien\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        collectionViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["Female"]/*[[".cells.staticTexts[\"Female\"]",".staticTexts[\"Female\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.buttons["Apply"].tap()
+        collectionViewsQuery2.cells.children(matching: .other).element.children(matching: .other).element.tap()
+        app.navigationBars["Abadango Cluster Princess"].buttons["Character"].tap()
+        
+    }
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
             // This measures how long it takes to launch your application.

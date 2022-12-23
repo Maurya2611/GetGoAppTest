@@ -19,7 +19,7 @@ public class LocationViewModel {
     var selectedResult: LocationDataResult?
     private let networkManager: NetworkManager = NetworkManager()
     var page: Int = 1
-    var totalPages: Int = 1
+    var totalPages: Int = 10
     init(delegate: LocationViewModelProtocol?) {
         self.delegate = delegate
     }
@@ -37,7 +37,6 @@ extension LocationViewModel {
                         }
                         self.locationResult += responseData.results ?? self.locationResult
                         self.page += 1
-                        self.totalPages = responseData.info?.pages ?? 1
                         self.delegate?.didFetchLocationResult()
                     }
                 }

@@ -20,7 +20,7 @@ public class CharacterViewModel {
     var selectedValue: [String: String] = [:]
     private let networkManager: NetworkManager = NetworkManager()
     var page: Int = 1
-    var totalPages: Int = 1
+    var totalPages: Int = 10
     init(delegate: CharacterViewModelProtocol?) {
         self.delegate = delegate
     }
@@ -38,7 +38,6 @@ extension CharacterViewModel {
                         }
                         self.characterResult += responseData.results ?? self.characterResult
                         self.page += 1
-                        self.totalPages = responseData.info?.pages ?? 1
                         self.delegate?.didFetchCharacterList()
                     }
                 }

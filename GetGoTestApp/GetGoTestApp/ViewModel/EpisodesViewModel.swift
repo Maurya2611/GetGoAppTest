@@ -19,7 +19,7 @@ public class EpisodesViewModel {
     var selectedResult: EpisodesDataResult?
     private let networkManager: NetworkManager = NetworkManager()
     var page: Int = 1
-    var totalPages: Int = 1
+    var totalPages: Int = 10
     init(delegate: EpisodesViewModelProtocol?) {
         self.delegate = delegate
     }
@@ -37,7 +37,6 @@ extension EpisodesViewModel {
                         }
                         self.episodesResult += responseData.results ?? self.episodesResult
                         self.page += 1
-                        self.totalPages = responseData.info?.pages ?? 1
                         self.delegate?.didFetchEpisodesResult()
                     }
                 }

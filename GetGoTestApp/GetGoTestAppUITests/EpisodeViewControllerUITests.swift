@@ -1,13 +1,13 @@
 //
-//  LocationViewControllerUITests.swift
+//  EpisodeViewControllerUITests.swift
 //  GetGoTestAppUITests
 //
-//  Created by Chandresh on 21/12/22.
+//  Created by Chandresh on 23/12/22.
 //
 
 import XCTest
 
-class LocationViewControllerUITests: XCTestCase {
+class EpisodeViewControllerUITests: XCTestCase {
     let app = XCUIApplication()
     override func setUpWithError() throws {
         XCUIDevice.shared.orientation = .portrait
@@ -27,16 +27,18 @@ class LocationViewControllerUITests: XCTestCase {
         var device = XCUIDevice.shared.orientation
         device = .portrait // device under test is set to portrait
         XCTAssertTrue(device.isPortrait) // tests if device is in portrait
+        
         app.tabBars["Tab Bar"].buttons["Location"].tap()
-        let locationNavigationBar = app.navigationBars["Location"]
-        locationNavigationBar.searchFields["Search"].tap()
-        locationNavigationBar.buttons["Cancel"].tap()
-        let collectionViewsQuery2 = app.collectionViews
-        let collectionViewsQuery = collectionViewsQuery2
-        collectionViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["Earth (C-137)"]/*[[".cells.staticTexts[\"Earth (C-137)\"]",".staticTexts[\"Earth (C-137)\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        collectionViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["https://rickandmortyapi.com/api/character/38"]/*[[".cells.staticTexts[\"https:\/\/rickandmortyapi.com\/api\/character\/38\"]",".staticTexts[\"https:\/\/rickandmortyapi.com\/api\/character\/38\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
-        app.navigationBars["Earth (C-137)"].buttons["Cancel"].tap()
-        collectionViewsQuery2.children(matching: .cell).element(boundBy: 3).staticTexts["Planet"].swipeUp()
+        let collectionViewsQuery = app.collectionViews
+        collectionViewsQuery.children(matching: .cell).element(boundBy: 0).staticTexts["season: 01"].tap()
+        collectionViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["Episode: 01"]/*[[".cells.staticTexts[\"Episode: 01\"]",".staticTexts[\"Episode: 01\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
+        app.navigationBars["Pilot"].buttons["Cancel"].tap()
+        let episodeNavigationBar = app.navigationBars["Episode"]
+        let searchSearchField = episodeNavigationBar.searchFields["Search"]
+        searchSearchField.tap()
+        searchSearchField.buttons["Clear text"].tap()
+        episodeNavigationBar.buttons["Cancel"].tap()
+        app.navigationBars["Anatomy Park"].buttons["Cancel"].tap()
     }
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {

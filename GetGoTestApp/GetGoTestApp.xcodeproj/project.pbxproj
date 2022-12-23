@@ -18,6 +18,8 @@
 		E06AF75D29546D32001895C9 /* SheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06AF75A29546D32001895C9 /* SheetTransition.swift */; };
 		E06AF75E29546D32001895C9 /* SheetTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06AF75B29546D32001895C9 /* SheetTransitioningDelegate.swift */; };
 		E06AF75F29546D32001895C9 /* SheetPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06AF75C29546D32001895C9 /* SheetPresentationController.swift */; };
+		E06AF7612955A779001895C9 /* EpisodeViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06AF7602955A779001895C9 /* EpisodeViewControllerUITests.swift */; };
+		E06AF7632955B2A4001895C9 /* CharacterViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06AF7622955B2A4001895C9 /* CharacterViewControllerTests.swift */; };
 		E0774CD3295013CD00149BDB /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0774CD2295013CD00149BDB /* CharacterDetailViewController.swift */; };
 		E0AC70B8294B163A0083C97F /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AC70B4294B163A0083C97F /* LocationViewController.swift */; };
 		E0AC70B9294B163A0083C97F /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AC70B5294B163A0083C97F /* MainTabBarController.swift */; };
@@ -114,6 +116,8 @@
 		E06AF75A29546D32001895C9 /* SheetTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetTransition.swift; sourceTree = "<group>"; };
 		E06AF75B29546D32001895C9 /* SheetTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetTransitioningDelegate.swift; sourceTree = "<group>"; };
 		E06AF75C29546D32001895C9 /* SheetPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetPresentationController.swift; sourceTree = "<group>"; };
+		E06AF7602955A779001895C9 /* EpisodeViewControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewControllerUITests.swift; sourceTree = "<group>"; };
+		E06AF7622955B2A4001895C9 /* CharacterViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewControllerTests.swift; sourceTree = "<group>"; };
 		E0774CD2295013CD00149BDB /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
 		E0AC70B4294B163A0083C97F /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		E0AC70B5294B163A0083C97F /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -294,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				E0E7C0C3294AFD9800F7258D /* GetGoTestAppTests.swift */,
+				E06AF7622955B2A4001895C9 /* CharacterViewControllerTests.swift */,
 			);
 			path = GetGoTestAppTests;
 			sourceTree = "<group>";
@@ -304,6 +309,7 @@
 				E0E7C0CD294AFD9800F7258D /* GetGoTestAppUITests.swift */,
 				E04519D82952D25700F9AB09 /* CharacterViewControllerUITests.swift */,
 				E04519DA2952DA2A00F9AB09 /* LocationViewControllerUITests.swift */,
+				E06AF7602955A779001895C9 /* EpisodeViewControllerUITests.swift */,
 				E0E7C0CF294AFD9800F7258D /* GetGoTestAppUITestsLaunchTests.swift */,
 			);
 			path = GetGoTestAppUITests;
@@ -730,6 +736,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E06AF7632955B2A4001895C9 /* CharacterViewControllerTests.swift in Sources */,
 				E0E7C0C4294AFD9800F7258D /* GetGoTestAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -739,6 +746,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E04519D92952D25700F9AB09 /* CharacterViewControllerUITests.swift in Sources */,
+				E06AF7612955A779001895C9 /* EpisodeViewControllerUITests.swift in Sources */,
 				E0E7C0CE294AFD9800F7258D /* GetGoTestAppUITests.swift in Sources */,
 				E0E7C0D0294AFD9800F7258D /* GetGoTestAppUITestsLaunchTests.swift in Sources */,
 				E04519DB2952DA2A00F9AB09 /* LocationViewControllerUITests.swift in Sources */,
