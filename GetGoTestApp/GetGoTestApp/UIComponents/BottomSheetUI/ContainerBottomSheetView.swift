@@ -17,25 +17,13 @@ final class ContainerBottomSheetView: UIView {
     }()
     private lazy var button: UIButton = {
         let button = UIButton()
-        if #available(iOS 15, *) {
-            var configuration = UIButton.Configuration.borderedProminent()
-            configuration.baseBackgroundColor = .tintColor
-            configuration.buttonSize = .medium
-            configuration.cornerStyle = .medium
-            configuration.attributedTitle = AttributedString("Apply",
-                                attributes: AttributeContainer([NSAttributedString.Key.font:
-                                    UIFont(name:"SFProRounded-Semibold", size: 20) ?? UIFont.boldSystemFont(ofSize: 20)]))
-            configuration.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
-            button.configuration = configuration
-            button.addTarget(self, action: #selector(applyButtonPressed(_:)), for: .touchUpInside)
-        } else {
-            button.backgroundColor = .systemOrange
-            button.setTitle("Dismiss", for: .normal)
-            button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
-            button.setTitleColor(.white, for: .normal)
-            button.titleEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
-            button.layer.cornerRadius = 8
-        }
+        button.setTitle("Apply", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.gray, for: .disabled)
+        button.backgroundColor = .tintColor
+        button.layer.cornerRadius = 10
+        button.titleLabel?.font =  UIFont(name:"SFProRounded-Semibold", size: 20) ?? UIFont.boldSystemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(applyButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -108,7 +96,8 @@ final class ContainerBottomSheetView: UIView {
         NSLayoutConstraint.activate([
             button.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 24),
             button.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -24),
-            button.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -24)
+            button.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -24),
+            button.heightAnchor.constraint(equalToConstant: 48)
         ])
     }
     private func estimatedFrame(text: String) -> CGRect {

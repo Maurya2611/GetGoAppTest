@@ -121,7 +121,7 @@ class CharacterViewController: UIViewController {
 extension CharacterViewController: FilterViewControllerProtocol {
     func didFetchFilterDataList(_ status: String?, _ spices: String?, _ gender: String?) {
         if let isEmpty = viewModel?.selectedValue.isEmpty, !isEmpty {
-            guard let filterArray = viewModel?.applyFilter(status: status ?? "", species: spices ?? "", gender: gender ?? ""),
+            guard let filterArray = viewModel?.applyFilter(status: status, species: spices, gender: gender ),
                   filterArray.count > 0 else {
                 self.lblNoRecordFound.isHidden = false
                 self.collectionView.isHidden = true
@@ -212,7 +212,7 @@ extension CharacterViewController: UICollectionViewDelegate, UICollectionViewDel
         if let count = viewModel?.characterResult.count, indexPath.row == count - 1 {
             // this is the last cell, load more data
             if NetworkReachability.isInterNetExist() {
-                if viewModel?.selectedValue.count == 0 {
+                if let isEmpty = viewModel?.selectedValue.isEmpty, isEmpty {
                     CommonUtils.showOnLoader(in: self.view)
                     viewModel?.loadMoreData()
                 }

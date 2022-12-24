@@ -53,17 +53,12 @@ extension CharacterViewModel {
             self.delegate?.noMoreDataToFetch()
         }
     }
-    func applyFilter(status: String, species: String, gender: String) -> [CharacterResult] {
-        var filteredArray = self.characterResult.filter { ($0.status == status || $0.species == species) && $0.gender == gender}
-        if !status.isEmpty {
-            filteredArray = filteredArray.filter { $0.status == status}
+    func applyFilter(status: String?, species: String?, gender: String?) -> [CharacterResult] {
+        return self.characterResult.filter {
+            guard let gender = gender else {
+                return $0.status == status || $0.species == species
+            }
+            return ($0.status == status || $0.species == species) && $0.gender == gender
         }
-        if !species.isEmpty {
-            filteredArray = filteredArray.filter { $0.species == species}
-        }
-        if !gender.isEmpty {
-            filteredArray = filteredArray.filter { $0.gender == gender}
-        }
-        return filteredArray
     }
 }
