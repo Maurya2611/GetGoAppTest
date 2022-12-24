@@ -42,7 +42,7 @@ class BaseNetworkRouter<RouterType: ServerRouterType>: NetworkRouter {
         }
         self.task?.resume()
     }
-    fileprivate func buildRequest(from route: RouterType) throws -> URLRequest {
+    func buildRequest(from route: RouterType) throws -> URLRequest {
         var request = URLRequest(url: route.baseURL.appendingPathComponent(route.path),
                                  cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
                                  timeoutInterval: 10)

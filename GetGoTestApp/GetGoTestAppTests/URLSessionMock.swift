@@ -32,4 +32,21 @@ class MockURLSession: URLSessionProtocol {
         return nextDataTask
     }
 }
-
+class MockAPIRequest<RouterType: ServerRouterType>: NetworkRouter  {
+    private var task: URLSessionDataTaskProtocol?
+    private var session: MockURLSession!
+    init(session: MockURLSession) {
+        self.session = session
+    }
+    func request(_ route: RouterType, completion: @escaping ServerRouterCompletion) {
+        do {
+            let bundle = Bundle(for: type(of: self))
+            guard let fileUrl = bundle.url(forResource: route.path, withExtension: "json") else { return  }
+            let jsonData = try Data(contentsOf: fileUrl).base64EncodedData()
+            completion(jsonData, nil, nil)
+        } catch {
+            completion(nil, nil, error)
+        }
+        self.task?.resume()
+    }
+}

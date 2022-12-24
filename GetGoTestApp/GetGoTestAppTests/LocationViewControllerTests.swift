@@ -1,23 +1,22 @@
 //
-//  CharacterViewControllerTests.swift
+//  LocationViewControllerTests.swift
 //  GetGoTestAppTests
 //
-//  Created by Chandresh on 23/12/22.
+//  Created by Chandresh on 24/12/22.
 //
 
 import XCTest
 @testable import GetGoTestApp
-
-class CharacterViewControllerTests: XCTestCase {
-    var mockViewModelProtocol: MockCharacterViewModelProtocol!
-    var viewModel: CharacterViewModel!
-    var viewController: CharacterViewController!
+class LocationViewControllerTests: XCTestCase {
+    var mockViewModelProtocol: LocationViewModelProtocol!
+    var viewModel: LocationViewModel!
+    var viewController: LocationViewController!
     private var session = MockURLSession()
     override func setUpWithError() throws {
         try super.setUpWithError()
-        mockViewModelProtocol = MockCharacterViewModelProtocol()
-        viewModel = CharacterViewModel.init(delegate: self.mockViewModelProtocol)
-        viewController = CharacterViewController()
+        mockViewModelProtocol = MockLocationViewModelProtocol()
+        viewModel = LocationViewModel.init(delegate: self.mockViewModelProtocol)
+        viewController = LocationViewController()
         viewController.viewModel = viewModel
         XCTAssertTrue(viewController.viewModel != nil)
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -33,39 +32,30 @@ class CharacterViewControllerTests: XCTestCase {
     func testUsingSimpleMock() {
         let router = MockAPIRequest<GetCharcterListApi>(session: session)
         let exp = expectation(description: "Loading URL")
-        router.request(.character(page: 0)) { dataModel, response, error in
+        router.request(.location(page: 0)) { dataModel, response, error in
             exp.fulfill()
             guard let responseData = dataModel else {
                 XCTAssertTrue(dataModel == nil)
                 return
             }
             do {
-                let apiResponse = try CharacterList.init(data: responseData)
+                let apiResponse = try LocationDataModel.init(data: responseData)
                 XCTAssertTrue(apiResponse.results != nil)
-                self.viewModel.characterResult = apiResponse.results ?? []
-                XCTAssertTrue(self.viewModel.characterResult.count > 0)
-                self.mockViewModelProtocol.didFetchCharacterList()
-                self.checkFilter()
+                self.viewModel.locationResult = apiResponse.results ?? []
+                self.mockViewModelProtocol.didFetchLocationResult()
+                XCTAssertTrue(self.viewModel.locationResult.count > 0)
             } catch {
                 print(error)
-                self.mockViewModelProtocol.failToFetchCharacterList(error.localizedDescription)
+                self.mockViewModelProtocol.failToFetchLocationResult(error.localizedDescription)
                 XCTAssertTrue(!error.localizedDescription.isEmpty)
             }
         }
         waitForExpectations(timeout: 60)
     }
-    func checkFilter() {
-        let condition1 = self.viewModel.applyFilter(status: "", species: "", gender: "")
-        XCTAssertTrue(condition1.count == 0)
-        let condition2 = self.viewModel.applyFilter(status: "Alive", species: "", gender: "")
-        XCTAssertTrue(condition2.contains(where: { status in
-            !(status.status?.isEmpty ?? false)
-        }))
-    }
     // MARK: Referesh Data
     func testRefreshMobileData() {
         viewController.pullToRefresh(UIRefreshControl())
-        XCTAssertTrue(viewModel.characterResult.count == 0, "Array isEmpty")
+        XCTAssertTrue(viewModel.locationResult.count == 0, "Array isEmpty")
     }
     func testURLEncoding() {
         let scheme = "https"
@@ -87,18 +77,19 @@ class CharacterViewControllerTests: XCTestCase {
     }
 }
 
-class MockCharacterViewModelProtocol: CharacterViewModelProtocol {
+class MockLocationViewModelProtocol: LocationViewModelProtocol {
     private (set) var success = false
     private (set) var failure = false
     private (set) var noData = false
-    
-    func didFetchCharacterList() {
-        success = true
-    }
-    func failToFetchCharacterList(_ error: String?) {
-        failure = true
-    }
     func noMoreDataToFetch() {
         noData = false
+    }
+    
+    func didFetchLocationResult() {
+        success = true
+    }
+    
+    func failToFetchLocationResult(_ error: String?) {
+        failure = true
     }
 }
