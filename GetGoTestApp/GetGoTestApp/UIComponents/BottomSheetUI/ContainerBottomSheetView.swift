@@ -85,7 +85,6 @@ final class ContainerBottomSheetView: UIView {
         addSubview(button)
         addSubview(titleLabel)
         self.addSubview(collectionView)
-        checkButtonEnableDisable()
     }
     @objc func applyButtonPressed(_ sender: Any) {
         self.didTapButton?(self.selectedValue)
@@ -120,13 +119,6 @@ final class ContainerBottomSheetView: UIView {
                                  options: .usesFontLeading,
                                  attributes: font,
                                  context: nil)
-    }
-    func checkButtonEnableDisable() {
-        if selectedValue.count > 0 {
-            button.isEnabled = true
-        }else {
-            button.isEnabled = false
-        }
     }
 }
 
@@ -184,7 +176,6 @@ extension ContainerBottomSheetView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if let itemsObject = listItems?[indexPath.section] as? [String: Any], let keyValue = itemsObject["title"] as? String {
             selectedValue.removeValue(forKey: keyValue)
-            checkButtonEnableDisable()
         }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -192,7 +183,6 @@ extension ContainerBottomSheetView: UICollectionViewDataSource {
            let items = itemsObject["list"] as? Array<Any>, let strValue = items[indexPath.row] as? String,
             let keyValue = itemsObject["title"] as? String {
             selectedValue[keyValue] = strValue
-            checkButtonEnableDisable()
         }
     }
 }

@@ -94,10 +94,25 @@
                     <view key="view" contentMode="scaleToFill" id="eYa-7I-lh4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Records Found !!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JDP-GT-LjX">
+                                <rect key="frame" x="114.5" y="436" width="185.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="PGa-Ab-ZUo"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JDP-GT-LjX" firstAttribute="centerX" secondItem="eYa-7I-lh4" secondAttribute="centerX" id="D8E-NV-1Ek"/>
+                            <constraint firstItem="JDP-GT-LjX" firstAttribute="centerY" secondItem="eYa-7I-lh4" secondAttribute="centerY" id="Zaj-MJ-woY"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Character" id="CQp-hQ-k1P"/>
+                    <connections>
+                        <outlet property="lblNoRecordFound" destination="JDP-GT-LjX" id="Ted-Zj-ZyI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WN7-eO-Zle" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

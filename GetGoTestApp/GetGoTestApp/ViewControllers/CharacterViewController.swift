@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 // MARK: - UIViewController
 class CharacterViewController: UIViewController {
+    @IBOutlet weak var lblNoRecordFound: UILabel!
     private let sheetTransitioningDelegate = SheetTransitioningDelegate()
     var viewModel: CharacterViewModel?
     private let padding: CGFloat = 16
@@ -119,15 +120,22 @@ class CharacterViewController: UIViewController {
 }
 extension CharacterViewController: FilterViewControllerProtocol {
     func didFetchFilterDataList(_ status: String?, _ spices: String?, _ gender: String?) {
-        if viewModel?.selectedValue != nil {
+        if let isEmpty = viewModel?.selectedValue.isEmpty, !isEmpty {
             guard let filterArray = viewModel?.applyFilter(status: status ?? "", species: spices ?? "", gender: gender ?? ""),
                   filterArray.count > 0 else {
-                CommonUtils.showAlert(in: self, withTitle: "GetGoAlert!", withBodyMessage: "No record found..!")
+                self.lblNoRecordFound.isHidden = false
+                self.collectionView.isHidden = true
                 collectionView.reloadData()
                 return
             }
             viewModel?.characterResult = filterArray
         }
+        else {
+            viewModel?.characterResult = viewModel?.allData ?? []
+        }
+        
+        self.lblNoRecordFound.isHidden = true
+        self.collectionView.isHidden = false
         self.collectionView.reloadData()
     }
 }

@@ -21,13 +21,13 @@ class FilterViewController: UIViewController {
         super.init(coder: aDecoder)
         fatalError("init(coder:) has not been implemented")
     }
-    var rootView: ContainerBottomSheetView? {
-        view as? ContainerBottomSheetView
-    }
+    lazy var rootView: ContainerBottomSheetView = {
+        ContainerBottomSheetView()
+    }()
     
     // MARK: - Lifecycle
     override func loadView() {
-        view = ContainerBottomSheetView()
+        view = rootView
     }
     
     override func viewDidLoad() {
@@ -57,12 +57,13 @@ class FilterViewController: UIViewController {
         let Params_Species: [String: Any] = ["title": "Species", "list": Species_List]
         let Params_Gender: [String: Any] = ["title": "Gender", "list": Gender_List]
         
-        rootView?.listItems = [Params_Status, Params_Species, Params_Gender]
-        rootView?.selectedValue = viewModel?.selectedValue ?? [:]
-        rootView?.didTapButton = { dic in
-            self.dismiss(animated: true)
-            self.viewModel?.selectedValue = dic
-            self.delegate?.didFetchFilterDataList(dic["Status"], dic["Species"], dic["Gender"])
+        rootView.listItems = [Params_Status, Params_Species, Params_Gender]
+        rootView.selectedValue = viewModel?.selectedValue ?? [:]
+        rootView.didTapButton = { dic in
+            self.dismiss(animated: true) {
+                self.viewModel?.selectedValue = dic
+                self.delegate?.didFetchFilterDataList(dic["Status"], dic["Species"], dic["Gender"])
+            }
         }
     }
 }

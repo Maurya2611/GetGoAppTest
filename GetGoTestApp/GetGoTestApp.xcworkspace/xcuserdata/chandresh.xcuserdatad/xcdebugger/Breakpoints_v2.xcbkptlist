@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0FD93B56-6ED4-4AC6-976B-DDB484263F4F"
+            uuid = "DFA1E9E7-811F-49D4-BCEB-EB34974B4C33"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GetGoTestApp/UIComponents/BottomSheetUI/ContainerBottomSheetView.swift"
+            filePath = "GetGoTestApp/ViewModel/CharacterViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
-            landmarkName = "collectionView(_:didDeselectItemAt:)"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "applyFilter(status:species:gender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

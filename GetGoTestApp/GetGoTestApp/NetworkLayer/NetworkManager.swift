@@ -22,7 +22,7 @@ enum Result<String> {
 }
 struct NetworkManager {
     static let environment: ServerEnvironment = .staging
-    let router = BaseNetworkRouter<GetCharcterListApi>()
+    let router = BaseNetworkRouter<GetCharcterListApi>(session: URLSession.shared)
     func fetchCharacterListData(page: Int, completion: @escaping (_ dataModel: CharacterList?, _ error: String?) -> Void) {
         router.request(.character(page: page)) { data, response, error in
             if error != nil {
