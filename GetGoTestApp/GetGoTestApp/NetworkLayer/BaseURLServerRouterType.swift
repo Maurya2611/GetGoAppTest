@@ -13,7 +13,6 @@ public enum GetCharcterListApi {
     case character(page: Int)
     case location(page: Int)
     case episode(page: Int)
-   // case characterWithID(id: Int)
 }
 extension GetCharcterListApi: ServerRouterType {
     var environmentBaseURL: String {

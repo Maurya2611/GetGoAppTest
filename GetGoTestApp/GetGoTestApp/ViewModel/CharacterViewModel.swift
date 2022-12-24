@@ -19,7 +19,7 @@ public class CharacterViewModel {
     var filteredResult: [CharacterResult] = []
     var selectedResult: CharacterResult?
     var selectedValue: [String: String] = [:]
-    private let networkManager: NetworkManager = NetworkManager()
+    private(set) var networkManager: NetworkManager = NetworkManager()
     var page: Int = 1
     var totalPages: Int = 10
     init(delegate: CharacterViewModelProtocol?) {
@@ -55,10 +55,15 @@ extension CharacterViewModel {
     }
     func applyFilter(status: String?, species: String?, gender: String?) -> [CharacterResult] {
         return self.characterResult.filter {
-            guard let gender = gender else {
-                return $0.status == status || $0.species == species
+            guard let gender = gender, let species = species, let status = status else {
+                if let status = status, let species = species {
+                    return $0.status == status && $0.species == species
+                } else if let status = status {
+                    return $0.status == status
+                }
+                return $0.species == species || $0.gender == gender
             }
-            return ($0.status == status || $0.species == species) && $0.gender == gender
+            return $0.status == status && $0.species == species && $0.gender == gender
         }
     }
 }

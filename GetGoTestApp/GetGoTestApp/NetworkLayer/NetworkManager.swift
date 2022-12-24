@@ -43,8 +43,8 @@ struct NetworkManager {
                         print(error)
                         completion(nil, ServerResponse.unableToDecode.rawValue)
                     }
-                case .failure(let networkFailureError):
-                    completion(nil, networkFailureError)
+                case .failure(let error):
+                    completion(nil, error)
                 }
             }
         }
@@ -69,8 +69,8 @@ struct NetworkManager {
                         print(error)
                         completion(nil, ServerResponse.unableToDecode.rawValue)
                     }
-                case .failure(let networkFailureError):
-                    completion(nil, networkFailureError)
+                case .failure(let error):
+                    completion(nil, error)
                 }
             }
         }
@@ -78,8 +78,9 @@ struct NetworkManager {
     func fetchEpisodesDataList(page: Int,
                                completion: @escaping (_ dataModel: EpisodesDataModel?, _ error: String?) -> Void) {
         router.request(.episode(page: page)) { data, response, error in
-            if error != nil {
+            guard error != nil else {
                 completion(nil, error?.localizedDescription)
+                return
             }
             if let response = response as? HTTPURLResponse {
                 switch self.handleNetworkResponse(response) {
@@ -97,8 +98,8 @@ struct NetworkManager {
                         print(error)
                         completion(nil, ServerResponse.unableToDecode.rawValue)
                     }
-                case .failure(let networkFailureError):
-                    completion(nil, networkFailureError)
+                case .failure(let error):
+                    completion(nil, error)
                 }
             }
         }

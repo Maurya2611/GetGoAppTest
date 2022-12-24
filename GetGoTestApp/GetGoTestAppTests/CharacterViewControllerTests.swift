@@ -12,7 +12,6 @@ class CharacterViewControllerTests: XCTestCase {
     var mockCharacterViewModelProtocol: MockCharacterViewModelProtocol!
     var viewModel: CharacterViewModel!
     var viewController: CharacterViewController!
-    
     override func setUpWithError() throws {
         try super.setUpWithError()
         mockCharacterViewModelProtocol = MockCharacterViewModelProtocol()
@@ -30,7 +29,20 @@ class CharacterViewControllerTests: XCTestCase {
         viewController = nil
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
+    func testUsingSimpleMock() {
+        let mockSession = MockURLSession()
+        mockSession.data = "testData".data(using: .ascii)
+//        let exp = expectation(description: "Loading URL")
+//        viewModel.networkManager.fetchCharacterListData(page: 1) { dataModel, error in
+//            exp.fulfill()
+//        }
+//        waitForExpectations(timeout: 0.1)
+    }
+    // MARK: Referesh Data
+    func testRefreshMobileData() {
+        viewController.pullToRefresh(UIRefreshControl())
+        XCTAssertTrue(viewModel.characterResult.count == 0, "Array isEmpty")
+    }
     func testURLEncoding() {
         let scheme = "https"
         let host = "www.google.com"

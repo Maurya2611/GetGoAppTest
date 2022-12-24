@@ -6,19 +6,21 @@
 //
 import Foundation
 public typealias ServerRouterCompletion = (_ dataModel: Data?, _ response: URLResponse?, _ error: Error?) -> Void
-
 protocol NetworkRouter: AnyObject {
     associatedtype EndPoint: ServerRouterType
     func request(_ route: EndPoint, completion: @escaping ServerRouterCompletion)
 }
-// Protocol for MOCK/Real
+// MARK: - Protocol for MOCK/Real
 protocol URLSessionProtocol {
-    func dataTask(with request: URLRequest, completionHandler: @escaping ServerRouterCompletion) -> URLSessionDataTask
+    func dataTask(with request: URLRequest, completionHandler: @escaping ServerRouterCompletion) -> URLSessionDataTaskProtocol
 }
-//MARK: Conform the protocol
-extension URLSession: URLSessionProtocol {}
 protocol URLSessionDataTaskProtocol {
     func resume()
+}
+extension URLSession: URLSessionProtocol {
+    func dataTask(with request: URLRequest, completionHandler: @escaping ServerRouterCompletion) -> URLSessionDataTaskProtocol {
+        return dataTask(with: request, completionHandler: completionHandler) as URLSessionDataTask
+    }
 }
 extension URLSessionDataTask: URLSessionDataTaskProtocol {}
 
@@ -43,7 +45,7 @@ class BaseNetworkRouter<RouterType: ServerRouterType>: NetworkRouter {
     fileprivate func buildRequest(from route: RouterType) throws -> URLRequest {
         var request = URLRequest(url: route.baseURL.appendingPathComponent(route.path),
                                  cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
-                                 timeoutInterval: 10.0)
+                                 timeoutInterval: 10)
         request.httpMethod = route.httpMethod.rawValue
         do {
             switch route.task {

@@ -21,6 +21,10 @@
 		E06AF7612955A779001895C9 /* EpisodeViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06AF7602955A779001895C9 /* EpisodeViewControllerUITests.swift */; };
 		E06AF7632955B2A4001895C9 /* CharacterViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06AF7622955B2A4001895C9 /* CharacterViewControllerTests.swift */; };
 		E06AF7652956D0C8001895C9 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06AF7642956D0C8001895C9 /* URLSessionMock.swift */; };
+		E06AF7672956EF0C001895C9 /* NetworkRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06AF7662956EF0C001895C9 /* NetworkRequestTest.swift */; };
+		E06AF76B2956F9EC001895C9 /* CharacterList.json in Resources */ = {isa = PBXBuildFile; fileRef = E06AF7682956F9EC001895C9 /* CharacterList.json */; };
+		E06AF76C2956F9EC001895C9 /* Episodes.json in Resources */ = {isa = PBXBuildFile; fileRef = E06AF7692956F9EC001895C9 /* Episodes.json */; };
+		E06AF76D2956F9EC001895C9 /* Location.json in Resources */ = {isa = PBXBuildFile; fileRef = E06AF76A2956F9EC001895C9 /* Location.json */; };
 		E0774CD3295013CD00149BDB /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0774CD2295013CD00149BDB /* CharacterDetailViewController.swift */; };
 		E0AC70B8294B163A0083C97F /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AC70B4294B163A0083C97F /* LocationViewController.swift */; };
 		E0AC70B9294B163A0083C97F /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AC70B5294B163A0083C97F /* MainTabBarController.swift */; };
@@ -120,6 +124,10 @@
 		E06AF7602955A779001895C9 /* EpisodeViewControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewControllerUITests.swift; sourceTree = "<group>"; };
 		E06AF7622955B2A4001895C9 /* CharacterViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewControllerTests.swift; sourceTree = "<group>"; };
 		E06AF7642956D0C8001895C9 /* URLSessionMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
+		E06AF7662956EF0C001895C9 /* NetworkRequestTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestTest.swift; sourceTree = "<group>"; };
+		E06AF7682956F9EC001895C9 /* CharacterList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CharacterList.json; sourceTree = "<group>"; };
+		E06AF7692956F9EC001895C9 /* Episodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Episodes.json; sourceTree = "<group>"; };
+		E06AF76A2956F9EC001895C9 /* Location.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Location.json; sourceTree = "<group>"; };
 		E0774CD2295013CD00149BDB /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
 		E0AC70B4294B163A0083C97F /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		E0AC70B5294B163A0083C97F /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -299,9 +307,13 @@
 		E0E7C0C2294AFD9800F7258D /* GetGoTestAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				E06AF7682956F9EC001895C9 /* CharacterList.json */,
+				E06AF7692956F9EC001895C9 /* Episodes.json */,
+				E06AF76A2956F9EC001895C9 /* Location.json */,
 				E06AF7642956D0C8001895C9 /* URLSessionMock.swift */,
 				E0E7C0C3294AFD9800F7258D /* GetGoTestAppTests.swift */,
 				E06AF7622955B2A4001895C9 /* CharacterViewControllerTests.swift */,
+				E06AF7662956EF0C001895C9 /* NetworkRequestTest.swift */,
 			);
 			path = GetGoTestAppTests;
 			sourceTree = "<group>";
@@ -569,6 +581,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E06AF76B2956F9EC001895C9 /* CharacterList.json in Resources */,
+				E06AF76C2956F9EC001895C9 /* Episodes.json in Resources */,
+				E06AF76D2956F9EC001895C9 /* Location.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -741,6 +756,7 @@
 			files = (
 				E06AF7652956D0C8001895C9 /* URLSessionMock.swift in Sources */,
 				E06AF7632955B2A4001895C9 /* CharacterViewControllerTests.swift in Sources */,
+				E06AF7672956EF0C001895C9 /* NetworkRequestTest.swift in Sources */,
 				E0E7C0C4294AFD9800F7258D /* GetGoTestAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
