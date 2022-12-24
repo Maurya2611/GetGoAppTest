@@ -28,7 +28,6 @@ class CharacterViewControllerTests: XCTestCase {
         mockViewModelProtocol = nil
         viewModel = nil
         viewController = nil
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     func testUsingSimpleMock() {
         let router = MockAPIRequest<GetCharcterListApi>(session: session)
@@ -43,6 +42,7 @@ class CharacterViewControllerTests: XCTestCase {
                 let apiResponse = try CharacterList.init(data: responseData)
                 XCTAssertTrue(apiResponse.results != nil)
                 self.viewModel.characterResult = apiResponse.results ?? []
+                XCTAssertNotNil(self.viewModel?.characterResult, "Array Should not be nil")
                 XCTAssertTrue(self.viewModel.characterResult.count > 0)
                 self.mockViewModelProtocol.didFetchCharacterList()
                 self.checkFilter()
@@ -52,7 +52,18 @@ class CharacterViewControllerTests: XCTestCase {
                 XCTAssertTrue(!error.localizedDescription.isEmpty)
             }
         }
-        waitForExpectations(timeout: 60)
+        // put timeout as per your expectation
+        waitForExpectations(timeout: 60) { error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    func testDidSelect() throws {
+        XCTAssertTrue(viewModel.selectedResult != nil)
+        let viewController = CharacterViewController()
+        viewController.collectionView(UICollectionView(), didSelectItemAt: IndexPath(row: 0, section: 0))
+        XCTAssertNotNil(viewController)
     }
     func checkFilter() {
         let condition1 = self.viewModel.applyFilter(status: "", species: "", gender: "")

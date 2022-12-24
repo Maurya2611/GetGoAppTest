@@ -51,7 +51,12 @@ class EpisodeViewControllerTests: XCTestCase {
                 XCTAssertTrue(!error.localizedDescription.isEmpty)
             }
         }
-        waitForExpectations(timeout: 60)
+        // put timeout as per your expectation
+        waitForExpectations(timeout: 120) { error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
     }
     // MARK: Referesh Data
     func testRefreshMobileData() {
