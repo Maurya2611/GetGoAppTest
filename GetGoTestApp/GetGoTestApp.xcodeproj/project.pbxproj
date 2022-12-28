@@ -21,7 +21,7 @@
 		E06AF7612955A779001895C9 /* EpisodeViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06AF7602955A779001895C9 /* EpisodeViewControllerUITests.swift */; };
 		E06AF7632955B2A4001895C9 /* CharacterViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06AF7622955B2A4001895C9 /* CharacterViewControllerTests.swift */; };
 		E06AF7652956D0C8001895C9 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06AF7642956D0C8001895C9 /* URLSessionMock.swift */; };
-		E06AF77129572A85001895C9 /* episodes.json in Resources */ = {isa = PBXBuildFile; fileRef = E06AF76E29572A85001895C9 /* episodes.json */; };
+		E06AF77129572A85001895C9 /* episode.json in Resources */ = {isa = PBXBuildFile; fileRef = E06AF76E29572A85001895C9 /* episode.json */; };
 		E06AF77229572A85001895C9 /* location.json in Resources */ = {isa = PBXBuildFile; fileRef = E06AF76F29572A85001895C9 /* location.json */; };
 		E06AF77329572A85001895C9 /* character.json in Resources */ = {isa = PBXBuildFile; fileRef = E06AF77029572A85001895C9 /* character.json */; };
 		E06AF77529573409001895C9 /* LocationViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06AF77429573409001895C9 /* LocationViewControllerTests.swift */; };
@@ -125,7 +125,7 @@
 		E06AF7602955A779001895C9 /* EpisodeViewControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewControllerUITests.swift; sourceTree = "<group>"; };
 		E06AF7622955B2A4001895C9 /* CharacterViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewControllerTests.swift; sourceTree = "<group>"; };
 		E06AF7642956D0C8001895C9 /* URLSessionMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
-		E06AF76E29572A85001895C9 /* episodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = episodes.json; sourceTree = "<group>"; };
+		E06AF76E29572A85001895C9 /* episode.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = episode.json; sourceTree = "<group>"; };
 		E06AF76F29572A85001895C9 /* location.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = location.json; sourceTree = "<group>"; };
 		E06AF77029572A85001895C9 /* character.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = character.json; sourceTree = "<group>"; };
 		E06AF77429573409001895C9 /* LocationViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewControllerTests.swift; sourceTree = "<group>"; };
@@ -310,7 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				E06AF77029572A85001895C9 /* character.json */,
-				E06AF76E29572A85001895C9 /* episodes.json */,
+				E06AF76E29572A85001895C9 /* episode.json */,
 				E06AF76F29572A85001895C9 /* location.json */,
 				E06AF7642956D0C8001895C9 /* URLSessionMock.swift */,
 				E0E7C0C3294AFD9800F7258D /* GetGoTestAppTests.swift */,
@@ -585,7 +585,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E06AF77229572A85001895C9 /* location.json in Resources */,
-				E06AF77129572A85001895C9 /* episodes.json in Resources */,
+				E06AF77129572A85001895C9 /* episode.json in Resources */,
 				E06AF77329572A85001895C9 /* character.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

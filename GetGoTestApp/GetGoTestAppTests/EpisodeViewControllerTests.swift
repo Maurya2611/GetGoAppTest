@@ -33,7 +33,7 @@ class EpisodeViewControllerTests: XCTestCase {
     func testUsingSimpleMock() {
         let router = MockAPIRequest<GetCharcterListApi>(session: session)
         let exp = expectation(description: "Loading URL")
-        router.request(.episode(page: 0)) { dataModel, response, error in
+        router.request(.episode(page: 1)) { dataModel, response, error in
             exp.fulfill()
             guard let responseData = dataModel else {
                 XCTAssertTrue(dataModel == nil)
@@ -52,11 +52,11 @@ class EpisodeViewControllerTests: XCTestCase {
             }
         }
         // put timeout as per your expectation
-        waitForExpectations(timeout: 120) { error in
+        waitForExpectations(timeout: 30, handler: { (error) in
             if let error = error {
-                print("Error: \(error.localizedDescription)")
+                XCTAssertNil(error, "The api request does not give response")
             }
-        }
+        })
     }
     // MARK: Referesh Data
     func testRefreshMobileData() {
