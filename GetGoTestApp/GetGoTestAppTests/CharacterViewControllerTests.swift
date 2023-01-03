@@ -13,6 +13,7 @@ class CharacterViewControllerTests: XCTestCase {
     var viewModel: CharacterViewModel!
     var viewController: CharacterViewController!
     private var session = MockURLSession()
+    var collectionView: UICollectionView?
     override func setUpWithError() throws {
         try super.setUpWithError()
         mockViewModelProtocol = MockCharacterViewModelProtocol()
@@ -20,6 +21,11 @@ class CharacterViewControllerTests: XCTestCase {
         viewController = CharacterViewController()
         viewController.viewModel = viewModel
         XCTAssertTrue(viewController.viewModel != nil)
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        let size = CGRect(x: 0, y: 0, width: 100, height: 100)
+        collectionView = UICollectionView(frame: size, collectionViewLayout: layout)
+        XCTAssertTrue(collectionView != nil)
+
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
@@ -28,6 +34,7 @@ class CharacterViewControllerTests: XCTestCase {
         mockViewModelProtocol = nil
         viewModel = nil
         viewController = nil
+        collectionView = nil
     }
     func testUsingSimpleMock() {
         let router = MockAPIRequest<GetCharcterListApi>(session: session)
@@ -60,10 +67,12 @@ class CharacterViewControllerTests: XCTestCase {
         }
     }
     func testDidSelect() throws {
-        XCTAssertTrue(viewModel.selectedResult != nil)
+        XCTAssertTrue(viewModel.selectedResult == nil)
         let viewController = CharacterViewController()
-        viewController.collectionView(UICollectionView(), didSelectItemAt: IndexPath(row: 0, section: 0))
-        XCTAssertNotNil(viewController)
+        collectionView!.register(CharacterFeedCell.nib, forCellWithReuseIdentifier: CharacterFeedCell.reuseIdentifier)
+        let cell: () = viewController.collectionView(collectionView!,
+                                                            didSelectItemAt: IndexPath(row: 0, section: 0))
+        XCTAssertNotNil(cell)
     }
     func checkFilter() {
         let condition1 = self.viewModel.applyFilter(status: "", species: "", gender: "")
