@@ -31,6 +31,28 @@ class LocationViewController: UIViewController {
         view.backgroundColor = .clear
         return view
     }()
+    // MARK: - UISearchController
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.searchBarStyle = .default
+        searchController.definesPresentationContext = true
+        searchController.searchBar.sizeToFit()
+        searchController.searchBar.tintColor = .black
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = true
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes =
+        [NSAttributedString.Key.foregroundColor: UIColor.black]
+        if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            textfield.attributedPlaceholder = NSAttributedString(string: textfield.placeholder ?? "",
+                                                                 attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray])
+            if let leftView = textfield.leftView as? UIImageView {
+                leftView.image = leftView.image?.withRenderingMode(.alwaysTemplate)
+                leftView.tintColor = UIColor.gray
+            }
+        }
+        return searchController
+    }()
     private lazy var refreshControl: UIRefreshControl = {
         let refresh = UIRefreshControl(frame: .zero)
         refresh.addTarget(self,
@@ -40,10 +62,10 @@ class LocationViewController: UIViewController {
         return refresh
     }()
     var isSearchBarEmpty: Bool {
-        return CommonUtils.searchController.searchBar.text?.isEmpty ?? true
+        return searchController.searchBar.text?.isEmpty ?? true
     }
     var isFiltering: Bool {
-        return CommonUtils.searchController.isActive && !isSearchBarEmpty
+        return searchController.isActive && !isSearchBarEmpty
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,9 +78,9 @@ class LocationViewController: UIViewController {
         collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor,
                                                constant: -(padding / 3)).isActive = true
-        CommonUtils.searchController.searchBar.delegate = self
-        CommonUtils.searchController.searchResultsUpdater = self
-        self.navigationItem.searchController = CommonUtils.searchController
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+        self.navigationItem.searchController = searchController
         
         // service API Call
         if NetworkReachability.isInterNetExist() {
@@ -90,7 +112,7 @@ class LocationViewController: UIViewController {
         if let viewModel = self.viewModel, viewModel.selectedResult != nil   {
             let viewController = LocationDetailViewController.init(viewModel: viewModel)
             let navigationController = UINavigationController(rootViewController: viewController)
-            navigationController.modalPresentationStyle = .fullScreen
+            navigationController.modalPresentationStyle = .pageSheet
             navigationController.navigationBar.isTranslucent = true
             self.present(navigationController, animated: true)
         }

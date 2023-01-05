@@ -33,6 +33,28 @@ class CharacterViewController: UIViewController {
         view.backgroundColor = .clear
         return view
     }()
+    // MARK: - UISearchController
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.searchBarStyle = .default
+        searchController.definesPresentationContext = true
+        searchController.searchBar.sizeToFit()
+        searchController.searchBar.tintColor = .black
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = true
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes =
+        [NSAttributedString.Key.foregroundColor: UIColor.black]
+        if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            textfield.attributedPlaceholder = NSAttributedString(string: textfield.placeholder ?? "",
+                                                                 attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray])
+            if let leftView = textfield.leftView as? UIImageView {
+                leftView.image = leftView.image?.withRenderingMode(.alwaysTemplate)
+                leftView.tintColor = UIColor.gray
+            }
+        }
+        return searchController
+    }()
     private lazy var refreshControl: UIRefreshControl = {
         let refresh = UIRefreshControl(frame: .zero)
         refresh.addTarget(self,
@@ -42,10 +64,10 @@ class CharacterViewController: UIViewController {
         return refresh
     }()
     var isSearchBarEmpty: Bool {
-        return CommonUtils.searchController.searchBar.text?.isEmpty ?? true
+        return searchController.searchBar.text?.isEmpty ?? true
     }
     var isFiltering: Bool {
-        return CommonUtils.searchController.isActive && !isSearchBarEmpty
+        return searchController.isActive && !isSearchBarEmpty
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,9 +99,9 @@ class CharacterViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        CommonUtils.searchController.searchBar.delegate = self
-        CommonUtils.searchController.searchResultsUpdater = self
-        self.navigationItem.searchController = CommonUtils.searchController
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+        self.navigationItem.searchController = searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.tabBarController?.tabBar.isHidden = false
     }
@@ -121,7 +143,7 @@ class CharacterViewController: UIViewController {
 extension CharacterViewController: FilterViewControllerProtocol {
     func didFetchFilterDataList(_ status: String?, _ spices: String?, _ gender: String?) {
         if let isEmpty = viewModel?.selectedValue.isEmpty, !isEmpty {
-            guard let filterArray = viewModel?.applyFilter(status: status, species: spices, gender: gender ),
+            guard let filterArray = viewModel?.applyFilter(status: status, species: spices, gender: gender),
                   filterArray.count > 0 else {
                 self.lblNoRecordFound.isHidden = false
                 self.collectionView.isHidden = true

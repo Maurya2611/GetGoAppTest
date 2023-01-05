@@ -43,28 +43,6 @@ struct CommonUtils {
             view?.present(alert, animated: true)
         }
     }
-    // MARK: - UISearchController
-    static var searchController: UISearchController = {
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.placeholder = "Search"
-        searchController.searchBar.searchBarStyle = .default
-        searchController.definesPresentationContext = true
-        searchController.searchBar.sizeToFit()
-        searchController.searchBar.tintColor = .black
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = true
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes =
-        [NSAttributedString.Key.foregroundColor: UIColor.black]
-        if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
-            textfield.attributedPlaceholder = NSAttributedString(string: textfield.placeholder ?? "",
-                                                                 attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray])
-            if let leftView = textfield.leftView as? UIImageView {
-                leftView.image = leftView.image?.withRenderingMode(.alwaysTemplate)
-                leftView.tintColor = UIColor.gray
-            }
-        }
-        return searchController
-    }()
     //  MARK: Condition to check load more data
     static  func shouldLoadMoreData(totalPage: Int, totalPageLoaded: Int) -> Bool {
         return totalPage >= totalPageLoaded

@@ -60,8 +60,9 @@ extension CharacterViewModel {
                     return $0.status == status && $0.species == species
                 } else if let status = status {
                     return $0.status == status
+                } else {
+                    return $0.species == species || $0.gender == gender
                 }
-                return $0.species == species || $0.gender == gender
             }
             return $0.status == status && $0.species == species && $0.gender == gender
         }
